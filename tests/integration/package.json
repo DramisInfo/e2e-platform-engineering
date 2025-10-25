@@ -1,0 +1,20 @@
+{
+  "name": "e2e-integration-tests",
+  "version": "1.0.0",
+  "description": "Integration tests for E2E SDLC Platform Demo",
+  "main": "index.js",
+  "scripts": {
+    "test:integration": "node tests/api-tests.js",
+    "test:e2e": "playwright test"
+  },
+  "keywords": ["testing", "integration", "e2e"],
+  "author": "Platform Engineering Team",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.0",
+    "chalk": "^4.1.2"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.40.0"
+  }
+}

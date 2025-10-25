@@ -1,0 +1,11 @@
+apiVersion: argoproj.io/v1alpha1
+kind: EventSource
+metadata:
+  name: argocd-webhook
+  namespace: argo-events
+spec:
+  webhook:
+    staging-sync:
+      port: "12000"
+      endpoint: /staging-sync
+      method: POST
