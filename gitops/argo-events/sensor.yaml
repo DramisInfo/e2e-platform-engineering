@@ -1,0 +1,39 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Sensor
+metadata:
+  name: test-trigger
+  namespace: argo-events
+spec:
+  template:
+    serviceAccountName: argo-events-sa
+  dependencies:
+    - name: staging-deployed
+      eventSourceName: argocd-webhook
+      eventName: staging-sync
+  triggers:
+    - template:
+        name: run-integration-tests
+        k8s:
+          operation: create
+          source:
+            resource:
+              apiVersion: batch/v1
+              kind: Job
+              metadata:
+                generateName: integration-tests-
+                namespace: staging
+              spec:
+                ttlSecondsAfterFinished: 300
+                template:
+                  metadata:
+                    labels:
+                      app: integration-tests
+                  spec:
+                    restartPolicy: Never
+                    containers:
+                      - name: tests
+                        image: ghcr.io/dramisinfo/e2e-platform-engineering/tests:latest
+                        command: ["npm", "run", "test:integration"]
+                        env:
+                          - name: API_URL
+                            value: "http://backend-service.staging:8080"

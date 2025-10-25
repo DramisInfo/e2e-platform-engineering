@@ -1,0 +1,25 @@
+{
+  "name": "e2e-backend",
+  "version": "1.0.0",
+  "description": "Backend REST API for E2E SDLC Platform Demo",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
+    "test": "jest --coverage",
+    "lint": "eslint src/"
+  },
+  "keywords": ["demo", "api", "rest", "platform-engineering"],
+  "author": "Platform Engineering Team",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^6.3.3",
+    "nodemon": "^3.0.1",
+    "eslint": "^8.54.0"
+  }
+}
